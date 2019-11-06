@@ -1,68 +1,71 @@
 // ITERATION 1
 
 // Suspects Collection
-const suspectsArray = [
-    {
-        name: "mrGreen",
-        firstName: "Jacob",
-        lastName: "Green",
-        occupation: "Entrepreneur",
-        age: 45,
-        description: "He has a lot of connections",
-        image: "https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg",
-        color: "green"
-    },
-    {
-        name: "drOrchid",
-        firstName: "Doctor",
-        lastName: "Orchid",
-        occupation: "Scientist",
-        age: 26,
-        description: "PhD in plant toxicology. Adopted daughter of Mr. Boddy",
-        image: "http://www.radiotimes.com/uploads/images/Original/111967.jpg",
-        color: "white"
-    },
-    {
-        name: "profPlum",
-        firstName: "Victor",
-        lastName: "Plum",
-        occupation: "Designer",
-        age: 22,
-        description: "Billionaire video game designer",
-        image: "https://66.media.tumblr.com/ee7155882178f73b3781603f0908617c/tumblr_phhxc7EhPJ1w5fh03_540.jpg",
-        color: "purple"
-    },
-    {
-        name: "missScarlet",
-        firstName: "Kasandra",
-        lastName: "Scarlet",
-        occupation: "Actor",
-        age: 31,
-        description: "She is an A-list movie star with a dark past",
-        image: "https://www.radiotimes.com/uploads/images/Original/111967.jpg",
-        color: "red"
-    },
-    {
-        name: "mrsPeacock",
-        firstName: "Eleanor",
-        lastName: "Peacock",
-        occupation: "Socialité",
-        age: 36,
-        description: "She is from a wealthy family and uses her status and money to earn popularity",
-        image: "https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg",
-        color: "blue"
-    },
-    {
-        name: "mrMustard",
-        firstName: "Jack",
-        lastName: "Mustard",
-        occupation: "Retired Football player",
-        age: 62,
-        description: "He is a former football player who tries to get by on his former glory",
-        image: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/07/04/08/unspecified-3.jpg",
-        color: "yellow"
-    }
-];
+let mrGreen = {
+    firstName: "Jacob",
+    lastName: "Green",
+    occupation: "Entrepreneur",
+    age: 45,
+    description: "He has a lot of connections",
+    image: "https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg",
+    color: "green"
+}
+let drOrchid = {
+    firstName: "Doctor",
+    lastName: "Orchid",
+    occupation: "Scientist",
+    age: 26,
+    description: "PhD in plant toxicology. Adopted daughter of Mr. Boddy",
+    image: "http://www.radiotimes.com/uploads/images/Original/111967.jpg",
+    color: "white"
+}
+let profPlum = {
+    firstName: "Victor",
+    lastName: "Plum",
+    occupation: "Designer",
+    age: 22,
+    description: "Billionaire video game designer",
+    image: "https://66.media.tumblr.com/ee7155882178f73b3781603f0908617c/tumblr_phhxc7EhPJ1w5fh03_540.jpg",
+    color: "purple"
+}
+let missScarlet = {
+    firstName: "Kasandra",
+    lastName: "Scarlet",
+    occupation: "Actor",
+    age: 31,
+    description: "She is an A-list movie star with a dark past",
+    image: "https://www.radiotimes.com/uploads/images/Original/111967.jpg",
+    color: "red"
+}
+
+let mrsPeacock = {
+    firstName: "Eleanor",
+    lastName: "Peacock",
+    occupation: "Socialité",
+    age: 36,
+    description: "She is from a wealthy family and uses her status and money to earn popularity",
+    image: "https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg",
+    color: "blue"
+}
+
+let mrMustard = {
+    firstName: "Jack",
+    lastName: "Mustard",
+    occupation: "Retired Football player",
+    age: 62,
+    description: "He is a former football player who tries to get by on his former glory",
+    image: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/07/04/08/unspecified-3.jpg",
+    color: "yellow"
+}
+
+const suspectsArray = []
+ suspectsArray.push(mrGreen);
+ suspectsArray.push(drOrchid);
+ suspectsArray.push(profPlum);
+ suspectsArray.push(missScarlet);
+ suspectsArray.push(mrsPeacock);
+ suspectsArray.push(mrMustard);
+
 
 // Rooms Collection
 const roomsArray = [
@@ -126,25 +129,15 @@ const weaponsArray = [
 
 // ITERATION 2
 
-function selectRandom(array) {
-    let length = array.length
-    let randomSelection;
-    if(length === 0) {
-      return undefined
-    }
-    if(length === 1) {
-      return array[0]
-    }
-    if(length > 1) {
-      length = (length * Math.random()) + 1
-      length = Math.floor(length)
-      randomSelection = array[length]
-      return randomSelection.name
-    }
+function selectRandom(myArray) {
+    if (myArray.length === 0) return undefined;
+    if (myArray.length === 1) return myArray[0];
+    let randomNumber = Math.floor(Math.random() * (myArray.length))
+    return myArray[randomNumber]
 }
 
 function pickMystery() {
-    let randomMystery = { suspect: "", weapon: "", room: "" }
+    let randomMystery = {}
     let suspect = selectRandom(suspectsArray)
     let weapon = selectRandom(weaponsArray)
     let room = selectRandom(roomsArray)
@@ -153,8 +146,17 @@ function pickMystery() {
     randomMystery.weapon = weapon;
     randomMystery.room = room;
 
-    return randomMystery  
+    return randomMystery
 
 }
 
 // ITERATION 3
+
+let play = pickMystery()
+
+function revealMystery(envelope) {
+    return (`${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`)
+
+}
+
+revealMystery(play)
